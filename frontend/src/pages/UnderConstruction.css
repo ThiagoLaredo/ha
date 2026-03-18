@@ -1,0 +1,190 @@
+.construction-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.construction-page__media {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 100% 0);
+  animation: construction-curtain 1.1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.construction-page__background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.construction-page__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 6, 13, 0.4), rgba(8, 6, 13, 0.58));
+  opacity: 0;
+  animation: construction-overlay-in 1s ease forwards;
+  animation-delay: 0.18s;
+}
+
+.construction-page__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.construction-page__enter-item {
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  animation: construction-content-in 0.8s ease forwards;
+}
+
+.construction-page__logo.construction-page__enter-item {
+  animation-delay: 0.55s;
+}
+
+.construction-page h1.construction-page__enter-item {
+  animation-delay: 0.72s;
+}
+
+.construction-page__socials.construction-page__enter-item {
+  animation-delay: 0.88s;
+}
+
+.construction-page__logo {
+  width: min(260px, 72vw);
+  height: auto;
+}
+
+.construction-page__logo svg {
+    width: min(260px, 72vw);
+    height: auto;
+}
+
+.construction-page h1 {
+  margin: 0;
+  color: #ffffff;
+  font-family: 'Inter', 'Avenir Next', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 2.5vw, 4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.construction-page__socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.construction-page__icon-link {
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.construction-page__icon-link:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.construction-page__icon-link:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.construction-page__icon-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes construction-curtain {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes construction-overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes construction-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construction-page__media,
+  .construction-page__overlay,
+  .construction-page__enter-item {
+    animation: none;
+  }
+
+  .construction-page__media {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .construction-page__overlay,
+  .construction-page__enter-item {
+    opacity: 1;
+  }
+
+  .construction-page__enter-item {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .construction-page__content {
+    gap: 20px;
+  }
+
+  .construction-page__icon-link {
+    width: 52px;
+    height: 52px;
+  }
+}

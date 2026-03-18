@@ -1,0 +1,239 @@
+.site-header__logo {
+  position: fixed;
+  top: 16px;
+  left: 24px;
+  z-index: 9999;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--heading);
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  padding: 10px 14px;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-header__logo.is-over-light {
+  color: #000;
+}
+
+.site-header__logo-word {
+  display: inline-flex;
+  --logo-last-index: 4;
+}
+
+.site-header__logo-letter {
+  position: relative;
+  display: inline-block;
+  color: currentColor;
+}
+
+.site-header__logo-letter::after {
+  content: attr(data-char);
+  position: absolute;
+  inset: 0;
+  color: #000;
+  clip-path: inset(0 0 100% 0);
+}
+
+.site-header__logo.is-menu-open .site-header__logo-letter::after {
+  animation: logo-letter-curtain 0.28s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.07s);
+}
+
+.site-header__logo.is-menu-closing .site-header__logo-letter::after {
+  animation: logo-letter-curtain-reverse 0.28s ease-out forwards;
+  animation-delay: calc((var(--logo-last-index) - var(--i)) * 0.07s);
+}
+
+.site-header__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes logo-letter-curtain {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes logo-letter-curtain-reverse {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+.site-header__menu-button {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 10px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-header__menu-button.is-over-light {
+  background: #000;
+  border-color: rgba(0, 0, 0, 0.45);
+}
+
+.site-header__menu-button span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #000;
+  align-self: flex-end;
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.site-header__menu-button.is-over-light span {
+  background: #fff;
+}
+
+.site-header__menu-button span:nth-child(1) {
+  width: 90%;
+  height: 2px;
+}
+
+.site-header__menu-button span:nth-child(2) {
+  width: 70%;
+  background: #888;
+}
+
+.site-header__menu-button.is-over-light span:nth-child(2) {
+  background: #bbb;
+}
+
+.site-header__menu-button span:nth-child(3) {
+  width: 100%;
+}
+
+.site-header__menu-button:hover span {
+  width: 100%;
+  background: #000;
+}
+
+.site-header__menu-button.is-over-light:hover span {
+  background: #fff;
+}
+
+.site-menu {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  clip-path: circle(22px at calc(100% - 46px) 38px);
+  animation: menu-circle-open 0.55s ease-out forwards;
+  padding-left: 30px;
+}
+
+.site-menu.is-closing {
+  animation: menu-circle-close 0.55s ease-in forwards;
+}
+
+@keyframes menu-circle-open {
+  from {
+    clip-path: circle(22px at calc(100% - 46px) 38px);
+  }
+  to {
+    clip-path: circle(150vmax at calc(100% - 46px) 38px);
+  }
+}
+
+@keyframes menu-circle-close {
+  from {
+    clip-path: circle(150vmax at calc(100% - 46px) 38px);
+  }
+  to {
+    clip-path: circle(22px at calc(100% - 46px) 38px);
+  }
+}
+
+.site-menu__close {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  transform: scale(0);
+  opacity: 0;
+  transform-origin: center;
+  animation: close-button-appear 0.35s ease-out 0.22s forwards;
+}
+
+.site-menu.is-closing .site-menu__close {
+  animation: close-button-disappear 0.22s ease-in forwards;
+}
+
+@keyframes close-button-appear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes close-button-disappear {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.site-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.site-menu__nav a {
+  color: var(--text-h);
+  text-decoration: none;
+  font-family: var(--heading);
+  font-size: 54 px;
+  line-height: 1;
+}
