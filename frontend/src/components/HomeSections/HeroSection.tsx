@@ -8,6 +8,20 @@ type HeroSectionProps = {
 const HeroSection = ({ apiStatus }: HeroSectionProps) => {
   return (
     <section className="home-hero">
+      <video
+        className="home-hero__video"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster="/background-landing.jpeg"
+        aria-hidden="true"
+      >
+        <source src="/optimized/home-hero.mp4" type="video/mp4" />
+      </video>
+      <div className="home-hero__overlay" aria-hidden="true" />
+
       <div className="home-section__container">
         <div className="home-hero__content">
           <span className="home-hero__eyebrow">Agência digital criativa</span>
@@ -26,6 +40,13 @@ const HeroSection = ({ apiStatus }: HeroSectionProps) => {
           </div>
           <p className="home-hero__status">{apiStatus}</p>
         </div>
+
+        <a className="home-hero__scroll" href="#recent-works-title" aria-label="Rolar para trabalhos recentes">
+          <span className="home-hero__scroll-label">Scroll</span>
+          <span className="home-hero__scroll-icon" aria-hidden="true">
+            <span className="home-hero__scroll-dot" />
+          </span>
+        </a>
       </div>
     </section>
   );

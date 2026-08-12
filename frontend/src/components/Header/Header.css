@@ -1,87 +1,84 @@
 .site-header__logo {
   position: fixed;
-  top: 16px;
+  top: 18px;
   left: 24px;
   z-index: 9999;
-  color: #fff;
   text-decoration: none;
-  font-family: var(--heading);
-  font-size: 28px;
-  letter-spacing: 0.08em;
-  padding: 10px 14px;
+  padding: 8px 10px;
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
 }
 
-.site-header__logo.is-over-light {
-  color: #000;
+.site-header__logo-image {
+  width: clamp(124px, 14vw, 168px);
+  height: auto;
+  display: block;
 }
 
-.site-header__logo-word {
+.site-header__language-switch {
+  position: fixed;
+  top: 18px;
+  right: 78px;
+  z-index: 9999;
   display: inline-flex;
-  --logo-last-index: 4;
+  align-items: center;
+  gap: 6px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(6px);
 }
 
-.site-header__logo-letter {
-  position: relative;
-  display: inline-block;
-  color: currentColor;
+.site-header__language-switch.is-over-light {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.4);
 }
 
-.site-header__logo-letter::after {
-  content: attr(data-char);
-  position: absolute;
-  inset: 0;
-  color: #000;
-  clip-path: inset(0 0 100% 0);
-}
-
-.site-header__logo.is-menu-open .site-header__logo-letter::after {
-  animation: logo-letter-curtain 0.28s ease-out forwards;
-  animation-delay: calc(var(--i) * 0.07s);
-}
-
-.site-header__logo.is-menu-closing .site-header__logo-letter::after {
-  animation: logo-letter-curtain-reverse 0.28s ease-out forwards;
-  animation-delay: calc((var(--logo-last-index) - var(--i)) * 0.07s);
-}
-
-.site-header__sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+.site-header__language-button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
   border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-@keyframes logo-letter-curtain {
-  from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
+.site-header__language-switch.is-over-light .site-header__language-button {
+  color: #08060d;
 }
 
-@keyframes logo-letter-curtain-reverse {
-  from {
-    clip-path: inset(0 0 0 0);
-  }
-  to {
-    clip-path: inset(0 0 100% 0);
-  }
+.site-header__language-button.is-active {
+  background: rgba(255, 255, 255, 0.94);
+  color: #08060d;
+}
+
+.site-header__language-switch.is-over-light .site-header__language-button.is-active {
+  background: #08060d;
+  color: #ffffff;
+}
+
+.site-header__language-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.site-header__language-switch.is-over-light .site-header__language-button:focus-visible {
+  outline-color: #08060d;
 }
 
 .site-header__menu-button {
   position: fixed;
-  top: 16px;
+  top: 18px;
   right: 24px;
-  z-index: 900;
+  z-index: 9999;
   width: 44px;
   height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.45);
@@ -234,6 +231,46 @@
   color: var(--text-h);
   text-decoration: none;
   font-family: var(--heading);
-  font-size: 54 px;
-  line-height: 1;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .site-header__logo {
+    top: 14px;
+    left: 18px;
+    padding: 6px;
+  }
+
+  .site-header__logo-image {
+    width: clamp(102px, 30vw, 138px);
+  }
+
+  .site-header__menu-button {
+    top: 14px;
+    right: 18px;
+  }
+
+  .site-header__language-switch {
+    top: 14px;
+    right: 72px;
+    gap: 4px;
+    padding: 2px;
+  }
+
+  .site-header__language-button {
+    min-width: 30px;
+    height: 30px;
+    padding: 0 6px;
+    font-size: 0.66rem;
+  }
+
+  .site-menu {
+    padding-left: 22px;
+  }
+
+  .site-menu__nav {
+    gap: 20px;
+  }
 }
