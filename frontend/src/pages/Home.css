@@ -53,7 +53,7 @@
 }
 
 .home-hero__inner {
-	min-height: 100svh;
+	/* min-height: 100svh; */
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -70,7 +70,7 @@
 	text-wrap: balance;
 	font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
 	font-size: clamp(2.4rem, 5.3vw, 5.2rem);
-	line-height: 0.98;
+	line-height: 1.1;
 	letter-spacing: -0.015em;
 	font-weight: 500;
 }
