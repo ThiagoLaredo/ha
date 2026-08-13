@@ -11,7 +11,7 @@
 }
 
 .site-header__logo-image {
-  width: clamp(124px, 14vw, 168px);
+  width: clamp(112px, 12.5vw, 152px);
   height: auto;
   display: block;
 }
@@ -241,10 +241,22 @@
     top: 14px;
     left: 18px;
     padding: 6px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .site-header__logo-image {
-    width: clamp(102px, 30vw, 138px);
+    width: clamp(82px, 24vw, 112px);
+    transition: filter 0.2s ease;
+  }
+
+  .site-header__logo.is-over-light {
+    background: #000000;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  }
+
+  .site-header__logo.is-over-light .site-header__logo-image {
+    filter: brightness(0) invert(1);
   }
 
   .site-header__menu-button {

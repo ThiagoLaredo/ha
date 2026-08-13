@@ -303,6 +303,10 @@ main > .home-divider-shell {
 	row-gap: 8px;
 }
 
+.home-clients__item {
+	scroll-snap-align: center;
+}
+
 .home-clients__name {
 	border: 0;
 	background: none;
@@ -439,12 +443,17 @@ main > .home-divider-shell {
 
 	.home-clients__gallery {
 		grid-template-columns: 1fr;
-		gap: 16px;
+		grid-template-rows: auto auto;
+		gap: 12px;
 	}
 
 	.home-clients__preview {
-		position: static;
+		order: -1;
+		position: sticky;
+		top: 78px;
 		aspect-ratio: 16 / 10;
+		max-width: 100%;
+		z-index: 1;
 	}
 
 	.home-clients__name {
@@ -454,7 +463,14 @@ main > .home-divider-shell {
 	.home-clients__names {
 		grid-template-columns: 1fr;
 		column-gap: 0;
-		row-gap: 6px;
+		row-gap: 8px;
+		overflow-y: auto;
+		scroll-snap-type: y mandatory;
+		padding-right: 6px;
+		padding-top: 6px;
+		padding-bottom: 8px;
+		height: min(42vh, 360px);
+		min-height: 260px;
 	}
 }
 

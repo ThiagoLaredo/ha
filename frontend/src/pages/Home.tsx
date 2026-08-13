@@ -131,6 +131,8 @@ const Home = () => {
   const [activeClientIndex, setActiveClientIndex] = useState<number>(0);
   const pauseAutoPlayUntil = useRef<number>(0);
   const storyRef = useRef<HTMLElement | null>(null);
+  const clientNamesRef = useRef<HTMLUListElement | null>(null);
+  const clientItemRefs = useRef<Array<HTMLLIElement | null>>([]);
 
   useEffect(() => {
     const updateLanguage = () => {
@@ -184,6 +186,70 @@ const Home = () => {
     observer.observe(storyRef.current);
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const namesContainer = clientNamesRef.current;
+    if (!namesContainer) {
+      return;
+    }
+
+    let rafId = 0;
+
+    const updateActiveFromScroll = () => {
+      const mediaQuery = window.matchMedia('(max-width: 768px)');
+      if (!mediaQuery.matches) {
+        return;
+      }
+
+      const itemElements = clientItemRefs.current.filter(Boolean) as HTMLLIElement[];
+      if (!itemElements.length) {
+        return;
+      }
+
+      const containerRect = namesContainer.getBoundingClientRect();
+      const containerCenterY = containerRect.top + containerRect.height / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      itemElements.forEach((itemElement, index) => {
+        const itemRect = itemElement.getBoundingClientRect();
+        const itemCenterY = itemRect.top + itemRect.height / 2;
+        const distance = Math.abs(itemCenterY - containerCenterY);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveClientIndex(closestIndex);
+    };
+
+    const onScroll = () => {
+      if (rafId) {
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(() => {
+        updateActiveFromScroll();
+        rafId = 0;
+      });
+    };
+
+    updateActiveFromScroll();
+
+    namesContainer.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateActiveFromScroll);
+
+    return () => {
+      namesContainer.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', updateActiveFromScroll);
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   const text = useMemo(() => content[language], [language]);
@@ -291,9 +357,16 @@ const Home = () => {
           <h2 id="clients-title">{text.clientsTitle}</h2>
 
           <div className="home-clients__gallery">
-            <ul className="home-clients__names">
+            <ul className="home-clients__names" ref={clientNamesRef}>
               {clients.map((client, index) => (
-                <li key={client.src}>
+                <li
+                  key={client.src}
+                  ref={(element) => {
+                    clientItemRefs.current[index] = element;
+                  }}
+                  data-index={index}
+                  className="home-clients__item"
+                >
                   <button
                     type="button"
                     className={`home-clients__name ${index === activeClientIndex ? 'is-active' : ''}`}
