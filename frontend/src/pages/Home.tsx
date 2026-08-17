@@ -207,24 +207,15 @@ const Home = () => {
         return;
       }
 
-      const containerRect = namesContainer.getBoundingClientRect();
-      const containerCenterY = containerRect.top + containerRect.height / 2;
+      const maxScrollTop = Math.max(namesContainer.scrollHeight - namesContainer.clientHeight, 0);
+      const ratio = maxScrollTop === 0 ? 0 : namesContainer.scrollTop / maxScrollTop;
+      const clampedRatio = Math.min(Math.max(ratio, 0), 1);
+      const nextIndex = Math.min(
+        itemElements.length - 1,
+        Math.max(0, Math.round(clampedRatio * (itemElements.length - 1)))
+      );
 
-      let closestIndex = 0;
-      let closestDistance = Number.POSITIVE_INFINITY;
-
-      itemElements.forEach((itemElement, index) => {
-        const itemRect = itemElement.getBoundingClientRect();
-        const itemCenterY = itemRect.top + itemRect.height / 2;
-        const distance = Math.abs(itemCenterY - containerCenterY);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
-
-      setActiveClientIndex(closestIndex);
+      setActiveClientIndex((previousIndex) => (previousIndex === nextIndex ? previousIndex : nextIndex));
     };
 
     const onScroll = () => {
