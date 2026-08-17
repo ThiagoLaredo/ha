@@ -133,6 +133,7 @@ const Home = () => {
   const storyRef = useRef<HTMLElement | null>(null);
   const clientNamesRef = useRef<HTMLUListElement | null>(null);
   const clientItemRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const activeClientIndexRef = useRef<number>(0);
 
   useEffect(() => {
     const updateLanguage = () => {
@@ -189,16 +190,41 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    activeClientIndexRef.current = activeClientIndex;
+  }, [activeClientIndex]);
+
+  useEffect(() => {
     const namesContainer = clientNamesRef.current;
     if (!namesContainer) {
       return;
     }
 
     let rafId = 0;
+    let lastWheelTime = 0;
+    let isProgrammaticScroll = false;
+
+    const scrollItemIntoView = (index: number) => {
+      const itemElements = clientItemRefs.current.filter(Boolean) as HTMLLIElement[];
+      const targetItem = itemElements[index];
+      if (!targetItem) {
+        return;
+      }
+
+      isProgrammaticScroll = true;
+      targetItem.scrollIntoView({ block: 'nearest' });
+
+      window.setTimeout(() => {
+        isProgrammaticScroll = false;
+      }, 140);
+    };
 
     const updateActiveFromScroll = () => {
       const mediaQuery = window.matchMedia('(max-width: 768px)');
       if (!mediaQuery.matches) {
+        return;
+      }
+
+      if (isProgrammaticScroll) {
         return;
       }
 
@@ -218,6 +244,41 @@ const Home = () => {
       setActiveClientIndex((previousIndex) => (previousIndex === nextIndex ? previousIndex : nextIndex));
     };
 
+    const onWheel = (event: WheelEvent) => {
+      const mediaQuery = window.matchMedia('(max-width: 768px)');
+      if (!mediaQuery.matches) {
+        return;
+      }
+
+      if (Math.abs(event.deltaY) < 1) {
+        return;
+      }
+
+      const now = Date.now();
+      if (now - lastWheelTime < 80) {
+        return;
+      }
+
+      const itemElements = clientItemRefs.current.filter(Boolean) as HTMLLIElement[];
+      if (!itemElements.length) {
+        return;
+      }
+
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const currentIndex = activeClientIndexRef.current;
+      const nextIndex = Math.min(itemElements.length - 1, Math.max(0, currentIndex + direction));
+
+      if (nextIndex === currentIndex) {
+        return;
+      }
+
+      event.preventDefault();
+      lastWheelTime = now;
+      activeClientIndexRef.current = nextIndex;
+      setActiveClientIndex(nextIndex);
+      scrollItemIntoView(nextIndex);
+    };
+
     const onScroll = () => {
       if (rafId) {
         return;
@@ -232,10 +293,12 @@ const Home = () => {
     updateActiveFromScroll();
 
     namesContainer.addEventListener('scroll', onScroll, { passive: true });
+    namesContainer.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('resize', updateActiveFromScroll);
 
     return () => {
       namesContainer.removeEventListener('scroll', onScroll);
+      namesContainer.removeEventListener('wheel', onWheel);
       window.removeEventListener('resize', updateActiveFromScroll);
       if (rafId) {
         window.cancelAnimationFrame(rafId);
