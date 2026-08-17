@@ -478,6 +478,10 @@ main > .home-divider-shell {
 		scroll-snap-align: start;
 		scroll-margin-block: 72px;
 	}
+
+	.home-clients__preview img {
+	object-fit: cover;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
