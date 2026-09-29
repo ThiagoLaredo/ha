@@ -15,7 +15,7 @@
 
 .site-footer__brand {
   color: #05070a;
-  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+  font-family: var(--heading);
   font-size: clamp(1.04rem, 1.28vw, 1.22rem);
   letter-spacing: -0.006em;
   line-height: 1.25;
@@ -30,7 +30,7 @@
 .site-footer__text-link {
   color: #05070a;
   text-decoration: none;
-  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+  font-family: var(--heading);
   font-size: clamp(1rem, 1.22vw, 1.18rem);
   letter-spacing: -0.008em;
   line-height: 1.2;

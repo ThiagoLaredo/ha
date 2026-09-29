@@ -8,16 +8,18 @@ type MenuState = 'closed' | 'opening' | 'open' | 'closing';
 
 const menuLinks = {
   pt: [
-    { label: 'O que fazemos?', to: '/#what-do-we-do', ariaLabel: 'Ir para seção O que fazemos' },
-    { label: 'O quê', to: '/#what', ariaLabel: 'Ir para seção O quê' },
     { label: 'Quem somos', to: '/#who', ariaLabel: 'Ir para seção Quem somos' },
-    { label: 'Contato', to: '/contact', ariaLabel: 'Ir para página de contato' },
+    { label: 'O que fazemos', to: '/#what-do-we-do', ariaLabel: 'Ir para seção O que fazemos' },
+    { label: 'Cases', to: '/cases', ariaLabel: 'Ir para página Cases' },
+    { label: 'Clientes', to: '/#clients', ariaLabel: 'Ir para seção Clientes' },
+    { label: 'Contato', to: '/#contact', ariaLabel: 'Ir para seção Contato' },
   ],
   en: [
-    { label: 'What do we do?', to: '/#what-do-we-do', ariaLabel: 'Go to What do we do section' },
-    { label: 'What', to: '/#what', ariaLabel: 'Go to What section' },
     { label: 'Who', to: '/#who', ariaLabel: 'Go to Who section' },
-    { label: 'Contact', to: '/contact', ariaLabel: 'Go to contact page' },
+    { label: 'What we do', to: '/#what-do-we-do', ariaLabel: 'Go to What we do section' },
+    { label: 'Cases', to: '/cases', ariaLabel: 'Go to Cases page' },
+    { label: 'Clients', to: '/#clients', ariaLabel: 'Go to Clients section' },
+    { label: 'Contact', to: '/#contact', ariaLabel: 'Go to Contact section' },
   ],
 } as const;
 
@@ -49,6 +51,24 @@ const Header = () => {
   const isMenuVisible = menuState !== 'closed';
   const isMenuOpen = menuState === 'opening' || menuState === 'open';
   const labels = uiLabels[language];
+
+  useEffect(() => {
+    if (!isMenuVisible) {
+      return;
+    }
+
+    const { body, documentElement } = document;
+    const previousBodyOverflow = body.style.overflow;
+    const previousHtmlOverflow = documentElement.style.overflow;
+
+    body.style.overflow = 'hidden';
+    documentElement.style.overflow = 'hidden';
+
+    return () => {
+      body.style.overflow = previousBodyOverflow;
+      documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [isMenuVisible]);
 
   useEffect(() => {
     if (menuState === 'opening') {
@@ -156,7 +176,7 @@ const Header = () => {
       </Link>
 
       <div
-        className={`site-header__language-switch ${isOverLightSection ? 'is-over-light' : ''}`}
+        className={`site-header__language-switch ${isOverLightSection ? 'is-over-light' : ''} ${isMenuOpen ? 'is-menu-open' : ''}`}
         role="group"
         aria-label={labels.languageSwitcher}
       >
@@ -183,7 +203,7 @@ const Header = () => {
 
       <button
         type="button"
-        className={`site-header__menu-button ${isOverLightSection ? 'is-over-light' : ''}`}
+        className={`site-header__menu-button ${isOverLightSection ? 'is-over-light' : ''} ${isMenuOpen ? 'is-menu-open' : ''}`}
         aria-label={isMenuOpen ? labels.closeMenu : labels.openMenu}
         aria-expanded={isMenuOpen}
         onClick={isMenuOpen ? closeMenu : openMenu}
@@ -200,15 +220,6 @@ const Header = () => {
           aria-modal="true"
           aria-label={labels.menuDialog}
         >
-          <button
-            type="button"
-            className="site-menu__close"
-            aria-label={labels.closeMenu}
-            onClick={closeMenu}
-          >
-            ✕
-          </button>
-
           <nav className="site-menu__nav">
             {menuLinks[language].map((item) => (
               <Link key={item.label} to={item.to} onClick={closeMenu} aria-label={item.ariaLabel}>

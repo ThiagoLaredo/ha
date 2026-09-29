@@ -9,6 +9,7 @@ type ProjectCardProps = {
   link: string;
   technologies?: string[];
   actionLabel?: string;
+  variant?: 'default' | 'cases';
 };
 
 const buildOptimizedVariants = (image?: string) => {
@@ -38,16 +39,18 @@ const ProjectCard = ({
   link,
   technologies,
   actionLabel = 'Ver projeto',
+  variant = 'default',
 }: ProjectCardProps) => {
   const variants = buildOptimizedVariants(image);
   const [hasImageError, setHasImageError] = useState(false);
+  const isCasesVariant = variant === 'cases';
 
   useEffect(() => {
     setHasImageError(false);
   }, [image]);
 
   return (
-    <article className="project-card">
+    <article className={`project-card ${isCasesVariant ? 'project-card--cases' : ''}`}>
       {image && !hasImageError && (
         <div className="project-card__media">
           <picture>
@@ -62,20 +65,32 @@ const ProjectCard = ({
               onError={() => setHasImageError(true)}
             />
           </picture>
+
+          {isCasesVariant && (
+            <div className="project-card__overlay">
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </div>
+          )}
         </div>
       )}
-      <h3>{title}</h3>
-      <p>{description}</p>
-      {technologies && technologies.length > 0 && (
-        <ul className="project-card__tags">
-          {technologies.map((technology) => (
-            <li key={technology}>{technology}</li>
-          ))}
-        </ul>
+
+      {!isCasesVariant && (
+        <>
+          <h3>{title}</h3>
+          <p>{description}</p>
+          {technologies && technologies.length > 0 && (
+            <ul className="project-card__tags">
+              {technologies.map((technology) => (
+                <li key={technology}>{technology}</li>
+              ))}
+            </ul>
+          )}
+          <a href={link} target="_blank" rel="noreferrer">
+            {actionLabel}
+          </a>
+        </>
       )}
-      <a href={link} target="_blank" rel="noreferrer">
-        {actionLabel}
-      </a>
     </article>
   );
 };

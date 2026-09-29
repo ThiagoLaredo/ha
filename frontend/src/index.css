@@ -1,3 +1,27 @@
+@font-face {
+  font-family: 'Gotham Light';
+  src:
+    local('Gotham Light'),
+    local('Gotham-Light'),
+    url('/fonts/Gotham-Light.woff2') format('woff2'),
+    url('/fonts/Gotham-Light.woff') format('woff');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier New Regular';
+  src:
+    local('Courier New'),
+    local('CourierNewPSMT'),
+    url('/fonts/CourierNew-Regular.woff2') format('woff2'),
+    url('/fonts/CourierNew-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -11,9 +35,9 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --sans: 'Gotham Light', 'Gotham-Light', Gotham, 'Helvetica Neue', Arial, sans-serif;
+  --heading: 'Gotham Light', 'Gotham-Light', Gotham, 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'Courier New Regular', 'Courier New', Courier, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -61,6 +85,11 @@
 
 body {
   margin: 0;
+  font-family: var(--sans);
+}
+
+* {
+  border-radius: 0 !important;
 }
 
 html {

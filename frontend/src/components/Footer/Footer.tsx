@@ -3,7 +3,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="site-footer" aria-label="Rodape do site">
+    <footer id="contact" className="site-footer" aria-label="Rodape do site">
       <div className="site-footer__container">
         <span className="site-footer__brand">@Helena Augusta 2026</span>
 

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 const carouselImages = [
@@ -59,14 +60,12 @@ const clientFiles = [
 const content = {
   pt: {
     title: 'Mais do que contar histórias, criamos reputação.',
-    sectionTitle: 'Somos contadores de histórias.',
+    sectionTitle: 'Somos contadores de histórias',
     sectionParagraphs: [
-      'Somos uma consultoria de imprensa lifestyle em moda, beleza, decoração, gastronomia, hospitalidade, mídia, inovação e corporativo.',
-      'Temos paixão em ajudar nossos clientes a comunicar suas marcas e projetos.',
-      'Vamos contar sua história juntos?',
-      'Nos divertimos trabalhando.',
+      'Somos uma agência de relações públicas que atua na interseção entre estratégia, reputação e oportunidade. Conectamos marcas com afinidades genuínas e potencial de sinergia, estruturando parcerias que transcendem a visibilidade e se traduzem em valor tangível, crescimento sustentável e negócios relevantes para todos os envolvidos.',
     ],
     servicesTitle: 'O que fazemos?',
+    ctaLabel: 'Ver cases',
     servicesItems: [
       {
         title: 'Marcas',
@@ -79,7 +78,7 @@ const content = {
       },
       {
         title: 'Eventos',
-        description: 'Nós realizamos o seu evento.',
+        description: 'Fazemos seu evento ganhar relevância.',
       },
       {
         title: 'Mídia',
@@ -90,14 +89,12 @@ const content = {
   },
   en: {
     title: 'More than telling stories, we build reputation.',
-    sectionTitle: 'We are storytellers.',
+    sectionTitle: 'We are storytellers',
     sectionParagraphs: [
-      'We are an advisory of lifestyle press - fashion, beauty, decoration, gastronomy, hospitality; media, innovation and corporate.',
-      'We have passion in helping our clients communicate their brands and projects.',
-      'Let’s tell your story together?',
-      'We have fun working.',
+      'We are a public relations agency operating at the intersection of strategy, reputation, and opportunity. We connect brands through genuine affinities and strong synergy potential, structuring partnerships that go beyond visibility and translate into tangible value, sustainable growth, and meaningful business opportunities for everyone involved.',
     ],
     servicesTitle: 'What do we do?',
+    ctaLabel: 'See our cases',
     servicesItems: [
       {
         title: 'Brands',
@@ -377,6 +374,10 @@ const Home = () => {
             {text.sectionParagraphs.map((paragraph, index) => (
               <p key={`${paragraph}-${index}`}>{paragraph}</p>
             ))}
+
+            <Link className="home-story__cta" to="/cases">
+              {text.ctaLabel}
+            </Link>
           </div>
         </div>
       </section>

@@ -18,7 +18,7 @@
 
 .site-header__language-switch {
   position: fixed;
-  top: 18px;
+  top: 23px;
   right: 78px;
   z-index: 9999;
   display: inline-flex;
@@ -26,15 +26,15 @@
   gap: 6px;
   padding: 3px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.48);
-  backdrop-filter: blur(6px);
+  /* background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.48); */
 }
 
-.site-header__language-switch.is-over-light {
-  background: rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.4);
+.site-header__language-switch.is-menu-open {
+  animation: language-switch-enter 0.5s ease-out both;
 }
+
+
 
 .site-header__language-button {
   min-width: 34px;
@@ -55,12 +55,21 @@
   color: #08060d;
 }
 
+.site-header__language-switch.is-menu-open .site-header__language-button {
+  color: #08060d;
+}
+
 .site-header__language-button.is-active {
   background: rgba(255, 255, 255, 0.94);
   color: #08060d;
 }
 
 .site-header__language-switch.is-over-light .site-header__language-button.is-active {
+  background: #08060d;
+  color: #ffffff;
+}
+
+.site-header__language-switch.is-menu-open .site-header__language-button.is-active {
   background: #08060d;
   color: #ffffff;
 }
@@ -74,51 +83,93 @@
   outline-color: #08060d;
 }
 
+.site-header__language-switch.is-menu-open .site-header__language-button:focus-visible {
+  outline-color: #08060d;
+}
+
+@keyframes language-switch-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .site-header__menu-button {
   position: fixed;
   top: 18px;
   right: 24px;
   z-index: 9999;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 50%;
-  background: #fff;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  padding: 0 10px;
+  gap: 6px;
+  padding: 0 11px;
   cursor: pointer;
   pointer-events: auto;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .site-header__menu-button.is-over-light {
-  background: #000;
-  border-color: rgba(0, 0, 0, 0.45);
+  background: transparent;
+}
+
+.site-header__menu-button.is-menu-open {
+  background: transparent;
 }
 
 .site-header__menu-button span {
   display: block;
   width: 100%;
-  height: 2px;
-  background: #000;
-  align-self: flex-end;
-  transition: width 0.2s ease, background-color 0.2s ease;
+  height: 2.5px;
+  background: #fff;
+  align-self: center;
+  transform-origin: center;
+  transition:
+    width 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.24s ease,
+    opacity 0.18s ease;
 }
 
 .site-header__menu-button.is-over-light span {
-  background: #fff;
+  background: #000;
+}
+
+.site-header__menu-button.is-menu-open span {
+  background: #000;
+}
+
+.site-header__menu-button.is-menu-open span:nth-child(1) {
+  width: 100%;
+  transform: translateY(9px) rotate(45deg);
+}
+
+.site-header__menu-button.is-menu-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+
+.site-header__menu-button.is-menu-open span:nth-child(3) {
+  width: 100%;
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .site-header__menu-button span:nth-child(1) {
-  width: 90%;
-  height: 2px;
+  width: 100%;
+  height: 2.5px;
 }
 
 .site-header__menu-button span:nth-child(2) {
-  width: 70%;
+  width: 76%;
   background: #888;
 }
 
@@ -132,11 +183,15 @@
 
 .site-header__menu-button:hover span {
   width: 100%;
-  background: #000;
+  background: #fff;
 }
 
 .site-header__menu-button.is-over-light:hover span {
-  background: #fff;
+  background: #000;
+}
+
+.site-header__menu-button.is-menu-open:hover span {
+  background: #000;
 }
 
 .site-menu {
@@ -176,50 +231,6 @@
   }
 }
 
-.site-menu__close {
-  position: absolute;
-  top: 16px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
-  border: 1px solid #000;
-  border-radius: 50%;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  font-size: 20px;
-  transform: scale(0);
-  opacity: 0;
-  transform-origin: center;
-  animation: close-button-appear 0.35s ease-out 0.22s forwards;
-}
-
-.site-menu.is-closing .site-menu__close {
-  animation: close-button-disappear 0.22s ease-in forwards;
-}
-
-@keyframes close-button-appear {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes close-button-disappear {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(0);
-    opacity: 0;
-  }
-}
-
 .site-menu__nav {
   display: flex;
   flex-direction: column;
@@ -228,12 +239,46 @@
 }
 
 .site-menu__nav a {
+  opacity: 0;
+  transform: translateY(26px);
   color: var(--text-h);
   text-decoration: none;
   font-family: var(--heading);
   font-size: clamp(2rem, 6vw, 3.4rem);
   line-height: 0.92;
   letter-spacing: -0.01em;
+  animation: menu-link-enter 0.66s var(--motion-ease, ease-out) both;
+}
+
+.site-menu__nav a:nth-child(1) {
+  animation-delay: 0.06s;
+}
+
+.site-menu__nav a:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.site-menu__nav a:nth-child(3) {
+  animation-delay: 0.22s;
+}
+
+.site-menu__nav a:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.site-menu__nav a:nth-child(5) {
+  animation-delay: 0.38s;
+}
+
+@keyframes menu-link-enter {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
@@ -241,8 +286,7 @@
     top: 14px;
     left: 18px;
     padding: 6px;
-    border-radius: 10px;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.2s ease;
   }
 
   .site-header__logo-image {
@@ -252,7 +296,6 @@
 
   .site-header__logo.is-over-light {
     background: #000000;
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
   }
 
   .site-header__logo.is-over-light .site-header__logo-image {
@@ -265,7 +308,7 @@
   }
 
   .site-header__language-switch {
-    top: 14px;
+    top: 22px;
     right: 72px;
     gap: 4px;
     padding: 2px;
