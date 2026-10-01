@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
-import { projects, Project } from '../data/mockProjects';
+import { getProjectByIdData, getProjectsData } from '../data/mockProjects';
 
 // GET /api/projects
 export const getProjects = (req: Request, res: Response) => {
-  res.json(projects);
+  res.json(getProjectsData());
 };
 
 // GET /api/projects/:id
 export const getProjectById = (req: Request, res: Response) => {
-const id = parseInt(String(req.params.id), 10);
-  const project = projects.find(p => p.id === id);
+  const id = parseInt(String(req.params.id), 10);
+  const project = getProjectByIdData(id);
   if (project) {
     res.json(project);
   } else {

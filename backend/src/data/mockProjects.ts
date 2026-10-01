@@ -1,53 +1,170 @@
+import fs from 'fs';
+import path from 'path';
+
+export type ProjectSegment = 'Artes e Cultura' | 'Beleza e Saúde' | 'Design' | 'Moda e Lifestyle';
+export type ProjectService = 'Marcas' | 'Eventos' | 'Produto' | 'Mídia';
+
 export interface Project {
   id: number;
+  slug: string;
   title: string;
   description: string;
   image: string;
-  link: string;
-  technologies: string[];
-  segment: 'Artes e Cultura' | 'Beleza e Saúde' | 'Design' | 'Moda e Lifestyle';
-  service: 'Marcas' | 'Eventos' | 'Produto' | 'Mídia';
+  images: string[];
+  segment: ProjectSegment;
+  service: ProjectService;
 }
 
-export const projects: Project[] = [
-  {
-    id: 1,
-    title: 'Blumi',
-    description: 'Posicionamento de marca com estratégia de imprensa e presença digital.',
-    image: '/images/home/hero-carousel/slide-1.jpg',
-    link: 'https://empresax.com',
-    technologies: ['Relações Públicas', 'Branding', 'Conteúdo'],
-    segment: 'Moda e Lifestyle',
-    service: 'Marcas'
-  },
-  {
-    id: 2,
-    title: 'Adcos',
-    description: 'Estratégia de visibilidade para lançamento de produto e relacionamento com mídia.',
-    image: '/images/home/hero-carousel/slide-2.jpg',
-    link: 'https://lojay.com.br',
-    technologies: ['Relações Públicas', 'Produto', 'Imprensa'],
+type CaseMetadata = {
+  segment: ProjectSegment;
+  service: ProjectService;
+  description: string;
+};
+
+const casesDir = path.resolve(__dirname, '../../../frontend/public/images/Cases');
+
+const caseMetadataByFolder: Record<string, CaseMetadata> = {
+  'ADCOS + Isis Valverde': {
     segment: 'Beleza e Saúde',
-    service: 'Produto'
+    service: 'Produto',
+    description: 'Ativacao visual e narrativa para ampliar a presenca editorial do case.'
   },
-  {
-    id: 3,
-    title: 'Manifesto Criativo',
-    description: 'Narrativa institucional e presença editorial para um projeto de design autoral.',
-    image: '/images/home/hero-carousel/slide-3.jpg',
-    link: 'https://github.com/olatu/delivery-app',
-    technologies: ['Editorial', 'Design', 'Narrativa'],
-    segment: 'Design',
-    service: 'Mídia'
+  'Buba + Fernanda Paes Leme': {
+    segment: 'Moda e Lifestyle',
+    service: 'Marcas',
+    description: 'Construcao de imagem com desdobramentos de imprensa, marca e conteudo.'
   },
-  {
-    id: 4,
-    title: 'Lançamento de Coleção Premium',
-    description: 'Estratégia de relações públicas com ativações de imprensa, creators e eventos proprietários para maximizar reputação e conversão.',
-    image: '/images/home/hero-carousel/slide-4.jpg',
-    link: 'https://helenaaugusta.com',
-    technologies: ['Relações Públicas', 'Influência', 'Eventos'],
+  'Camila Fremder - Nóia Ao Vivo': {
     segment: 'Artes e Cultura',
-    service: 'Eventos'
+    service: 'Eventos',
+    description: 'Cobertura e desdobramento de um lancamento com foco em repercussao e audiencia.'
+  },
+  'Carolina Ferraz - Livro': {
+    segment: 'Artes e Cultura',
+    service: 'Mídia',
+    description: 'Case editorial com estrategia de visibilidade para reforcar narrativa e alcance.'
+  },
+  'elbo': {
+    segment: 'Moda e Lifestyle',
+    service: 'Marcas',
+    description: 'Posicionamento de marca com imagens que traduzem repertorio, desejo e contexto.'
+  },
+  'Geração Glamour': {
+    segment: 'Moda e Lifestyle',
+    service: 'Eventos',
+    description: 'Ativacao pensada para gerar presenca, conversa e reconhecimento de marca.'
+  },
+  'Givaudan + CCXP': {
+    segment: 'Design',
+    service: 'Eventos',
+    description: 'Experiencia de marca desenhada para amplificar impacto visual e cultural.'
+  },
+  'LBP': {
+    segment: 'Moda e Lifestyle',
+    service: 'Marcas',
+    description: 'Projeto de comunicacao com foco em consolidacao de marca e desejabilidade.'
+  },
+  'LENVIE + MASP': {
+    segment: 'Beleza e Saúde',
+    service: 'Eventos',
+    description: 'Encontro entre produto, repertorio cultural e visibilidade de marca.'
+  },
+  'Laces + Bioma': {
+    segment: 'Beleza e Saúde',
+    service: 'Produto',
+    description: 'Apresentacao de produto com linguagem visual alinhada a percepcao premium.'
+  },
+  'Laces + COP': {
+    segment: 'Beleza e Saúde',
+    service: 'Eventos',
+    description: 'Acao de relacionamento e imagem com foco em experiencia e conversa qualificada.'
+  },
+  'Mustela': {
+    segment: 'Beleza e Saúde',
+    service: 'Produto',
+    description: 'Estrutura de comunicacao visual para destacar produto, contexto e afinidade.'
+  },
+  'ORIGEM PATACHO': {
+    segment: 'Moda e Lifestyle',
+    service: 'Marcas',
+    description: 'Narrativa de marca orientada por atmosfera, territorio e construcao de desejo.'
+  },
+  'Piloto Milano': {
+    segment: 'Moda e Lifestyle',
+    service: 'Marcas',
+    description: 'Material de case voltado a reforcar assinatura, posicionamento e memoria de marca.'
+  },
+  'Puma': {
+    segment: 'Moda e Lifestyle',
+    service: 'Eventos',
+    description: 'Case de alta energia com ativacao orientada a impacto, audiencia e repercussao.'
+  },
+  'Santista Jeanswear + Leandra Medine': {
+    segment: 'Moda e Lifestyle',
+    service: 'Produto',
+    description: 'Lancamento com apelo de produto e construcao de conversa em torno da colecao.'
+  },
+  'Uma + Pedro Vinicio': {
+    segment: 'Moda e Lifestyle',
+    service: 'Eventos',
+    description: 'Acao de visibilidade com direcao criativa e foco em experiencia de marca.'
   }
-];
+};
+
+const imageExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+
+const toSlug = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+const encodePathSegment = (segment: string) => encodeURIComponent(segment).replace(/%2B/g, '+');
+
+const encodePathSegments = (...segments: string[]) => segments.map((segment) => encodePathSegment(segment)).join('/');
+
+const isImageFile = (fileName: string) => imageExtensions.has(path.extname(fileName).toLowerCase());
+
+export const getProjectsData = (): Project[] => {
+  if (!fs.existsSync(casesDir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(casesDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .sort((left, right) => left.name.localeCompare(right.name, 'pt-BR'))
+    .map((entry, index) => {
+      const folderName = entry.name;
+      const folderPath = path.join(casesDir, folderName);
+      const metadata = caseMetadataByFolder[folderName] ?? {
+        segment: 'Moda e Lifestyle',
+        service: 'Marcas',
+        description: 'Case com direcao visual, narrativa e execucao voltadas para visibilidade da marca.'
+      };
+
+      const images = fs
+        .readdirSync(folderPath, { withFileTypes: true })
+        .filter((fileEntry) => fileEntry.isFile() && isImageFile(fileEntry.name))
+        .map((fileEntry) => fileEntry.name)
+        .sort((left, right) => left.localeCompare(right, 'pt-BR'))
+        .map((fileName) => `/${encodePathSegments('images', 'Cases', folderName, fileName)}`);
+
+      return {
+        id: index + 1,
+        slug: toSlug(folderName),
+        title: folderName,
+        description: metadata.description,
+        image: images[0] ?? '',
+        images,
+        segment: metadata.segment,
+        service: metadata.service
+      };
+    })
+    .filter((project) => project.images.length > 0);
+};
+
+export const getProjectByIdData = (id: number): Project | undefined =>
+  getProjectsData().find((project) => project.id === id);
