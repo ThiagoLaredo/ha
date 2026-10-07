@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
 @font-face {
   font-family: 'Gotham Light';
   src:
@@ -23,25 +25,46 @@
 }
 
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --color-off-white: #f1eae1;
+  --color-sand: #e6e0d6;
+  --color-taupe: #8b8378;
+  --color-olive: #262419;
+  --color-black: #100f09;
+  --color-coffee: #634c35;
+  --color-terracotta: #8d6a4a;
 
-  --sans: 'Gotham Light', 'Gotham-Light', Gotham, 'Helvetica Neue', Arial, sans-serif;
-  --heading: 'Gotham Light', 'Gotham-Light', Gotham, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+
+  --container-max: 1440px;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xl: 64px;
+  --spacing-2xl: 96px;
+  --spacing-3xl: 140px;
+
+  --text: var(--color-taupe);
+  --text-h: var(--color-black);
+  --bg: var(--color-off-white);
+  --border: rgba(16, 15, 9, 0.16);
+  --code-bg: #ece4d9;
+  --accent: var(--color-coffee);
+  --accent-bg: rgba(99, 76, 53, 0.11);
+  --accent-border: rgba(99, 76, 53, 0.34);
+  --social-bg: rgba(230, 224, 214, 0.55);
+  --shadow:
+    rgba(16, 15, 9, 0.16) 0 12px 24px -12px, rgba(16, 15, 9, 0.08) 0 6px 10px -8px;
+
+  --sans: var(--font-sans);
+  --heading: var(--font-display);
   --mono: 'Courier New Regular', 'Courier New', Courier, monospace;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
+  font: 16px/155% var(--sans);
+  letter-spacing: 0.01em;
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -51,26 +74,6 @@
 
   @media (max-width: 1024px) {
     font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
   }
 }
 
@@ -86,6 +89,8 @@
 body {
   margin: 0;
   font-family: var(--sans);
+  background: var(--color-off-white);
+  color: var(--color-black);
 }
 
 * {
@@ -99,13 +104,14 @@ html {
 h1,
 h2 {
   font-family: var(--heading);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--text-h);
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
+  font-size: clamp(2.9rem, 5.1vw, 4.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   margin: 32px 0;
   @media (max-width: 1024px) {
     font-size: 36px;
@@ -113,9 +119,9 @@ h1 {
   }
 }
 h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
+  font-size: clamp(2.3rem, 3.8vw, 3.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   margin: 0 0 8px;
   @media (max-width: 1024px) {
     font-size: 20px;
@@ -138,4 +144,23 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

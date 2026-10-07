@@ -37,7 +37,7 @@ const RecentWorksSection = () => {
                   key={project.id}
                   title={project.title}
                   description={project.description}
-                  link={project.link}
+                  image={project.images[0]}
                 />
               ))}
             </div>

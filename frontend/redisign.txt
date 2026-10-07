@@ -1,0 +1,778 @@
+DIREÇÃO VISUAL — HELENA AUGUSTA
+
+Criar o website da Helena Augusta Comunicação com estética editorial, sofisticada, minimalista e contemporânea.
+
+A referência estética é uma mistura de:
+- luxury editorial
+- fashion magazine
+- boutique communications agency
+- contemporary Brazilian lifestyle
+- arquitetura e design
+- fotografia cinematográfica
+
+IMPORTANTE:
+Não copiar o layout ou identidade visual da Karla Otto. Usar apenas como referência de sofisticação, minimalismo e experiência digital.
+
+==================================================
+1. PALETA DE CORES
+==================================================
+
+Usar uma paleta quente, sofisticada e pouco saturada.
+
+COR PRINCIPAL — OFF-WHITE
+HEX: #F1EAE1
+RGB: 241, 234, 225
+Uso:
+- background principal
+- áreas de conteúdo
+- header
+- cards claros
+
+COR SECUNDÁRIA — AREIA
+HEX: #E6E0D6
+RGB: 230, 224, 214
+Uso:
+- backgrounds alternativos
+- cards
+- separações de seção
+
+COR TAUPE
+HEX: #8B8378
+RGB: 139, 131, 120
+Uso:
+- textos secundários
+- pequenos detalhes
+- metadata
+- labels
+
+COR OLIVA ESCURO
+HEX: #262419
+RGB: 38, 36, 25
+Uso:
+- grandes blocos de destaque
+- cards de clientes
+- seções especiais
+- backgrounds escuros
+
+COR PRETO PROFUNDO
+HEX: #100F09
+RGB: 16, 15, 9
+Uso:
+- títulos
+- textos principais
+- navegação
+- elementos de alto contraste
+
+COR MARROM CAFÉ
+HEX: #634C35
+RGB: 99, 76, 53
+Uso:
+- pequenos detalhes
+- hover
+- elementos de apoio
+
+COR TERRACOTA QUEIMADO
+HEX: #8D6A4A
+RGB: 141, 106, 74
+Uso:
+- acentos muito pontuais
+- nunca usar como cor dominante
+
+PROPORÇÃO APROXIMADA DA PALETA:
+
+70% — #F1EAE1
+15% — #100F09
+8% — #262419
+5% — #E6E0D6
+2% — #8D6A4A / #634C35
+
+Não utilizar cores vibrantes, neon, branco puro (#FFFFFF) ou preto absoluto (#000000).
+
+==================================================
+2. TIPOGRAFIA
+==================================================
+
+TIPOGRAFIA DISPLAY / TÍTULOS:
+
+Cormorant Garamond
+
+Google Font:
+https://fonts.google.com/specimen/Cormorant+Garamond
+
+Usar:
+font-family: 'Cormorant Garamond', serif;
+
+Peso principal:
+400 — Regular
+
+Nunca usar títulos principais em Bold.
+
+Características:
+- elegante
+- editorial
+- fashion
+- alto contraste
+- sofisticada
+- feminina sem ser excessivamente romântica
+
+Tamanhos desktop:
+
+H1:
+72px
+line-height: 0.92
+font-weight: 400
+letter-spacing: -2px
+
+H2:
+52px
+line-height: 0.95
+font-weight: 400
+letter-spacing: -1.5px
+
+H3:
+34px
+line-height: 1
+font-weight: 400
+letter-spacing: -0.8px
+
+Títulos muito grandes de impacto:
+80–96px quando houver espaço suficiente.
+
+Exemplo:
+
+COMUNICAÇÃO
+COMO ATIVO.
+
+Deve ocupar aproximadamente 2 linhas.
+
+==================================================
+3. TIPOGRAFIA DE TEXTO / INTERFACE
+==================================================
+
+Fonte:
+
+Inter
+
+Google Font:
+https://fonts.google.com/specimen/Inter
+
+Usar:
+font-family: 'Inter', sans-serif;
+
+Pesos permitidos:
+400
+500
+600
+
+Evitar 700/800/900.
+
+BODY:
+16px
+line-height: 1.55
+font-weight: 400
+
+TEXTOS PEQUENOS:
+13px
+line-height: 1.4
+
+LABELS:
+10–11px
+line-height: 1.2
+font-weight: 500
+letter-spacing: 0.08em
+text-transform: uppercase
+
+MENU:
+11–12px
+font-weight: 500
+letter-spacing: 0.02em
+text-transform: uppercase
+
+BOTÕES:
+11–12px
+font-weight: 500
+letter-spacing: 0.04em
+text-transform: uppercase
+
+==================================================
+4. HIERARQUIA TIPOGRÁFICA
+==================================================
+
+Criar contraste forte entre as duas famílias:
+
+Cormorant Garamond:
+- grandes headlines
+- títulos
+- nomes de projetos
+- frases conceituais
+- chamadas editoriais
+
+Inter:
+- menu
+- navegação
+- textos
+- descrições
+- categorias
+- datas
+- botões
+- informações técnicas
+
+A combinação deve transmitir:
+
+EDITORIAL + STRATEGIC + LUXURY
+
+==================================================
+5. ESPAÇAMENTO
+==================================================
+
+O site deve ter bastante espaço negativo.
+
+Desktop:
+
+Container máximo:
+1440px
+
+Padding lateral:
+64px desktop
+
+Em telas muito grandes:
+80px
+
+Grid:
+12 colunas
+
+Gap:
+20–24px
+
+Seções:
+padding vertical de 100–140px
+
+Cards:
+20–32px de padding
+
+Não deixar o site visualmente carregado.
+
+==================================================
+6. HEADER
+==================================================
+
+Header minimalista.
+
+Background:
+#F1EAE1
+
+Logo:
+
+HELENA AUGUSTA
+
+Cormorant Garamond
+aproximadamente 25–28px
+font-weight 400
+letter-spacing: -0.5px
+
+Menu alinhado à direita:
+
+SOBRE
+ATUAÇÃO
+PROJETOS
+INSIGHTS
+CONTATO
+
+Inter
+11px
+uppercase
+letter-spacing: 0.04em
+
+Header height:
+aproximadamente 72px
+
+O header deve ser extremamente limpo.
+
+==================================================
+7. HERO
+==================================================
+
+Hero ocupa aproximadamente 70–80vh.
+
+Usar uma fotografia editorial/cinematográfica em tela ampla.
+
+Fotografia:
+- lifestyle
+- arquitetura
+- moda
+- natureza
+- viagem
+- Brasil sofisticado
+- luz natural
+- tons quentes
+- contraste baixo
+- aparência analógica/film
+- nada muito publicitário
+
+Overlay muito sutil e escuro apenas para garantir legibilidade.
+
+Headline:
+
+COMUNICAÇÃO
+COMO ATIVO.
+
+Cormorant Garamond
+72–88px desktop
+#F1EAE1
+
+Subheadline:
+
+Estratégia, conexões e narrativas para marcas que querem ocupar espaço relevante na cultura.
+
+Inter
+15–17px
+line-height 1.5
+max-width: 360px
+#F1EAE1
+
+Pequeno indicador:
+
+SCROLL →
+
+Inter
+10px
+uppercase
+letter-spacing: 0.12em
+
+==================================================
+8. SEÇÃO "O QUE FAZEMOS"
+==================================================
+
+Background:
+#F1EAE1
+
+Headline:
+
+WE CREATE
+RELEVANCE.
+
+Cormorant Garamond
+52–64px
+
+Abaixo, quatro categorias:
+
+01 — STRATEGY
+02 — CULTURE
+03 — CONNECTIONS
+04 — INFLUENCE
+
+Os nomes podem utilizar Inter 13–14px.
+
+Descrição:
+Inter 13–14px
+line-height 1.5
+
+Cada item separado por uma linha muito fina:
+
+border-color: rgba(16,15,9,0.18)
+
+==================================================
+9. CLIENTES
+==================================================
+
+Criar uma seção escura.
+
+Background:
+#262419
+
+Título:
+
+BRANDS WE
+BELIEVE IN.
+
+Cormorant Garamond
+52–60px
+color: #F1EAE1
+
+Mostrar clientes através de imagens/editoriais, e não apenas logos.
+
+Exemplos de cards:
+
+LACES
+Beauty · Wellness · Sustainability
+
+ADCOS
+Beauty · Science · Innovation
+
+MUSTELA
+Family · Care · Culture
+
+BIOMA
+Biodiversity · Impact · Global
+
+BUBA
+Family · Lifestyle · Joy
+
+MART
+Fashion · Design · Attitude
+
+Cards com fotografia + nome + pequena descrição.
+
+Evitar logos enormes.
+
+==================================================
+10. SELECTED WORK
+==================================================
+
+Criar uma seção de projetos/cases.
+
+Título:
+
+SELECTED
+WORK
+
+Cormorant Garamond
+52–64px
+
+Cada projeto deve ser visualmente forte.
+
+Formato preferencial:
+imagem grande + pequeno bloco de texto.
+
+Exemplo:
+
+LACES
+
+Beauty · Wellness · Sustainability
+
+Como posicionar uma marca brasileira de beleza,
+conectando relevância cultural, imprensa,
+influência e negócio.
+
+Link:
+
+VER CASE →
+
+Inter 10–11px uppercase.
+
+==================================================
+11. THE AUGUSTA EDIT
+==================================================
+
+Nome da área editorial:
+
+THE AUGUSTA EDIT
+
+Não chamar de "Blog".
+
+Subtítulo:
+
+Insights para um mundo em movimento.
+
+Conteúdo:
+- cultura
+- comunicação
+- moda
+- beleza
+- design
+- comportamento
+- negócios
+- influência
+- tendências
+
+Cards editoriais com fotografia.
+
+Título do artigo:
+Cormorant Garamond 26–30px
+
+Categoria:
+Inter 10px uppercase
+
+Resumo:
+Inter 13px
+
+==================================================
+12. BEYOND PR
+==================================================
+
+Criar uma seção com fundo:
+
+#262419
+
+Headline:
+
+PR IS ONLY
+THE STARTING POINT.
+
+Cormorant Garamond
+52–64px
+color #F1EAE1
+
+Texto:
+
+Construímos estratégias que conectam comunicação,
+cultura, influência e negócio.
+
+Ao lado, apresentar:
+
+Brand positioning
+Media strategy
+Influence & creators
+Launches
+Events & experiences
+Strategic partnerships
+Cultural connections
+
+Inter
+13–14px
+
+==================================================
+13. SOBRE
+==================================================
+
+Background:
+#E6E0D6
+
+Headline:
+
+WE ARE
+HELENA AUGUSTA.
+
+Cormorant Garamond
+48–60px
+
+Texto:
+
+Uma boutique de comunicação criada para marcas
+que entendem que reputação não se constrói apenas
+com exposição — se constrói com relevância.
+
+Criar também o conceito:
+
+BOUTIQUE BY CHOICE.
+
+Mais senioridade.
+Mais proximidade.
+Mais repertório.
+Mais acesso.
+
+==================================================
+14. NETWORK
+==================================================
+
+Título:
+
+PEOPLE MAKE
+CULTURE.
+
+Criar uma representação visual minimalista de rede.
+
+Núcleo:
+
+HA
+
+Ao redor:
+
+MEDIA
+CREATORS
+TALENTS
+BRANDS
+CULTURAL PLAYERS
+BUSINESS
+
+Linhas finas conectando os elementos.
+
+Não fazer algo tecnológico/futurista.
+
+Deve parecer mais próximo de um diagrama editorial.
+
+==================================================
+15. CONTATO
+==================================================
+
+Seção final muito limpa.
+
+Background:
+#100F09
+
+Headline:
+
+LET'S MAKE
+SOMETHING
+RELEVANT.
+
+Cormorant Garamond
+60–72px
+color #F1EAE1
+
+Email:
+Inter
+15–16px
+
+São Paulo · Brazil
+
+Adicionar Instagram e LinkedIn de forma discreta.
+
+==================================================
+16. FOTOGRAFIA
+==================================================
+
+A fotografia é extremamente importante.
+
+Não utilizar banco de imagens com aparência corporativa.
+
+Direção:
+
+- editorial
+- cinematográfica
+- natural
+- sofisticada
+- brasileira
+- lifestyle
+- fashion
+- arquitetura
+- design
+- natureza
+- gastronomia
+- hotelaria
+- detalhes humanos
+- textura
+- luz natural
+
+Color grading:
+- quente
+- levemente desaturado
+- contraste moderado
+- pretos não completamente pretos
+- aparência de filme analógico
+- evitar cores vibrantes
+
+Evitar:
+- pessoas olhando para a câmera sorrindo
+- reuniões corporativas
+- apertos de mão
+- notebooks
+- escritórios genéricos
+- stock photography óbvia
+
+==================================================
+17. MICROINTERAÇÕES
+==================================================
+
+Animações devem ser discretas.
+
+Usar:
+- fade
+- slow reveal
+- slight image zoom
+- horizontal slide
+- underline animation
+
+Duração:
+400–700ms
+
+Easing:
+cubic-bezier(0.22, 1, 0.36, 1)
+
+Evitar:
+- efeitos exagerados
+- parallax excessivo
+- animações rápidas
+- elementos pulando
+- estética tecnológica
+
+==================================================
+18. RESPONSIVIDADE
+==================================================
+
+DESKTOP:
+1440px / 1280px
+
+TABLET:
+768–1024px
+
+MOBILE:
+320–767px
+
+No mobile:
+- reduzir H1 para 46–56px
+- H2 para 38–44px
+- padding lateral 24px
+- transformar grids em coluna
+- manter bastante espaço negativo
+- preservar a hierarquia editorial
+
+IMPORTANTE:
+
+O layout principal deve ser pensado PRIMEIRO para desktop.
+
+Não criar uma versão mobile que pareça simplesmente uma redução da versão desktop.
+
+==================================================
+19. CSS VARIABLES
+==================================================
+
+Criar as seguintes variáveis:
+
+:root {
+  --color-off-white: #F1EAE1;
+  --color-sand: #E6E0D6;
+  --color-taupe: #8B8378;
+  --color-olive: #262419;
+  --color-black: #100F09;
+  --color-coffee: #634C35;
+  --color-terracotta: #8D6A4A;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+
+  --container-max: 1440px;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xl: 64px;
+  --spacing-2xl: 96px;
+  --spacing-3xl: 140px;
+}
+
+==================================================
+20. GOOGLE FONTS
+==================================================
+
+Importar:
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+==================================================
+DIREÇÃO GERAL
+==================================================
+
+O resultado final deve parecer uma mistura de:
+
+EDITORIAL MAGAZINE
++
+LUXURY BRAND
++
+BOUTIQUE CONSULTANCY
++
+CONTEMPORARY BRAZIL
+
+A sensação desejada é:
+
+sofisticada
+autoral
+inteligente
+feminina
+minimalista
+premium
+cultural
+brasileira
+internacional
+
+Não deixar o site com aparência de agência tradicional de publicidade ou assessoria de imprensa.
+
+Menos informação.
+Mais impacto visual.
+
+Menos elementos.
+Mais espaço.
+
+Menos "empresa".
+Mais "marca".

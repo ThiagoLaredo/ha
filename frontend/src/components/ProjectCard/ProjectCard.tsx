@@ -5,8 +5,9 @@ type ProjectCardProps = {
   title: string;
   description: string;
   image?: string;
+  images?: string[];
   priority?: boolean;
-  link: string;
+  link?: string;
   technologies?: string[];
   actionLabel?: string;
   variant?: 'default' | 'cases';
@@ -35,42 +36,50 @@ const ProjectCard = ({
   title,
   description,
   image,
+  images,
   priority = false,
   link,
   technologies,
   actionLabel = 'Ver projeto',
   variant = 'default',
 }: ProjectCardProps) => {
-  const variants = buildOptimizedVariants(image);
+  const displayImage = image ?? images?.[0];
+  const variants = buildOptimizedVariants(displayImage);
   const [hasImageError, setHasImageError] = useState(false);
   const isCasesVariant = variant === 'cases';
 
   useEffect(() => {
     setHasImageError(false);
-  }, [image]);
+  }, [displayImage]);
+
+  const shouldRenderMediaContainer = isCasesVariant || (Boolean(displayImage) && !hasImageError);
 
   return (
     <article className={`project-card ${isCasesVariant ? 'project-card--cases' : ''}`}>
-      {image && !hasImageError && (
-        <div className="project-card__media">
-          <picture>
-            {variants?.webp && <source type="image/webp" srcSet={variants.webp} sizes="(max-width: 900px) 100vw, 33vw" />}
-            {variants?.jpg && <source type="image/jpeg" srcSet={variants.jpg} sizes="(max-width: 900px) 100vw, 33vw" />}
-            <img
-              src={variants?.fallback ?? image}
-              alt={title}
-              loading={priority ? 'eager' : 'lazy'}
-              decoding="async"
-              fetchPriority={priority ? 'high' : 'low'}
-              onError={() => setHasImageError(true)}
-            />
-          </picture>
+      {shouldRenderMediaContainer && (
+        <div className={`project-card__media ${isCasesVariant && hasImageError ? 'project-card__media--fallback' : ''}`}>
+          {displayImage && !hasImageError && (
+            <picture>
+              {variants?.webp && <source type="image/webp" srcSet={variants.webp} sizes="(max-width: 900px) 100vw, 33vw" />}
+              {variants?.jpg && <source type="image/jpeg" srcSet={variants.jpg} sizes="(max-width: 900px) 100vw, 33vw" />}
+              <img
+                src={variants?.fallback ?? displayImage}
+                alt={title}
+                loading={priority ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={priority ? 'high' : 'low'}
+                onError={() => setHasImageError(true)}
+              />
+            </picture>
+          )}
 
           {isCasesVariant && (
-            <div className="project-card__overlay">
-              <h3>{title}</h3>
-              <p>{description}</p>
-            </div>
+            <>
+              <div className="project-card__overlay">
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+            </>
           )}
         </div>
       )}
@@ -86,9 +95,11 @@ const ProjectCard = ({
               ))}
             </ul>
           )}
-          <a href={link} target="_blank" rel="noreferrer">
-            {actionLabel}
-          </a>
+          {link && (
+            <a href={link} target="_blank" rel="noreferrer">
+              {actionLabel}
+            </a>
+          )}
         </>
       )}
     </article>

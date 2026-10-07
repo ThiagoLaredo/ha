@@ -8,7 +8,11 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "images:optimize": "node scripts/optimize-images.mjs"
+    "cases:manifest": "node scripts/generate-cases-manifest.mjs",
+    "images:optimize": "node scripts/optimize-images.mjs",
+    "images:normalize:clientes": "node scripts/optimize-images.mjs --home-clients-only",
+    "images:normalize:cases": "node scripts/optimize-images.mjs --cases-rename-only",
+    "images:optimize:cases": "node scripts/optimize-images.mjs --cases-only"
   },
   "dependencies": {
     "react": "^19.2.4",

@@ -8,15 +8,15 @@ type MenuState = 'closed' | 'opening' | 'open' | 'closing';
 
 const menuLinks = {
   pt: [
-    { label: 'Quem somos', to: '/#who', ariaLabel: 'Ir para seção Quem somos' },
-    { label: 'O que fazemos', to: '/#what-do-we-do', ariaLabel: 'Ir para seção O que fazemos' },
+    { label: 'Quem somos', to: '/about', ariaLabel: 'Ir para página Quem somos' },
+    { label: 'O que fazemos', to: '/#o-que-fazemos', ariaLabel: 'Ir para seção O que fazemos' },
     { label: 'Cases', to: '/cases', ariaLabel: 'Ir para página Cases' },
     { label: 'Clientes', to: '/#clients', ariaLabel: 'Ir para seção Clientes' },
     { label: 'Contato', to: '/#contact', ariaLabel: 'Ir para seção Contato' },
   ],
   en: [
-    { label: 'Who', to: '/#who', ariaLabel: 'Go to Who section' },
-    { label: 'What we do', to: '/#what-do-we-do', ariaLabel: 'Go to What we do section' },
+    { label: 'Who', to: '/about', ariaLabel: 'Go to Who page' },
+    { label: 'What we do', to: '/#o-que-fazemos', ariaLabel: 'Go to What we do section' },
     { label: 'Cases', to: '/cases', ariaLabel: 'Go to Cases page' },
     { label: 'Clients', to: '/#clients', ariaLabel: 'Go to Clients section' },
     { label: 'Contact', to: '/#contact', ariaLabel: 'Go to Contact section' },
@@ -46,6 +46,7 @@ const Header = () => {
   const location = useLocation();
   const [menuState, setMenuState] = useState<MenuState>('closed');
   const [isOverLightSection, setIsOverLightSection] = useState<boolean>(location.pathname !== '/');
+  const [hasStartedScroll, setHasStartedScroll] = useState<boolean>(false);
   const [language, setLanguage] = useState<'pt' | 'en'>('pt');
 
   const isMenuVisible = menuState !== 'closed';
@@ -100,7 +101,12 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
+    let rafHandle: number;
+
     const updateHeaderTheme = () => {
+      setHasStartedScroll(window.scrollY > 0);
+
       if (location.pathname !== '/') {
         setIsOverLightSection(true);
         return;
@@ -115,15 +121,43 @@ const Header = () => {
 
       const heroBottom = heroSection.getBoundingClientRect().bottom;
       const headerTrigger = 80;
+
+      const shouldUseWhiteHeader = ['#clients', '.home-clients', '.home-beyond', '#contact', '.site-footer'].some((selector) => {
+        const section = document.querySelector<HTMLElement>(selector);
+
+        if (!section) {
+          return false;
+        }
+
+        const rect = section.getBoundingClientRect();
+        return rect.top <= headerTrigger && rect.bottom >= headerTrigger;
+      });
+
+      if (shouldUseWhiteHeader) {
+        setIsOverLightSection(false);
+        return;
+      }
+
       setIsOverLightSection(heroBottom <= headerTrigger);
     };
 
+    const onScrollThrottled = () => {
+      if (!ticking) {
+        ticking = true;
+        rafHandle = requestAnimationFrame(() => {
+          updateHeaderTheme();
+          ticking = false;
+        });
+      }
+    };
+
     updateHeaderTheme();
-    window.addEventListener('scroll', updateHeaderTheme, { passive: true });
+    window.addEventListener('scroll', onScrollThrottled, { passive: true });
     window.addEventListener('resize', updateHeaderTheme);
 
     return () => {
-      window.removeEventListener('scroll', updateHeaderTheme);
+      if (rafHandle) cancelAnimationFrame(rafHandle);
+      window.removeEventListener('scroll', onScrollThrottled);
       window.removeEventListener('resize', updateHeaderTheme);
     };
   }, [location.pathname]);
@@ -161,16 +195,22 @@ const Header = () => {
     setLanguage(nextLanguage);
   };
 
+  const reducedLogoSrc = isOverLightSection ? '/logo-preto.svg' : '/logo-branco.svg';
+  const initialLogoSrc = ['/about', '/contact', '/cases', '/portfolio'].includes(location.pathname)
+    ? '/logo-extendido-escuro.svg'
+    : '/logo-extendido-branco.svg';
+  const logoSrc = hasStartedScroll ? reducedLogoSrc : initialLogoSrc;
+
   return (
     <>
       <Link
         to="/"
-        className={`site-header__logo ${isOverLightSection ? 'is-over-light' : ''} ${isMenuOpen ? 'is-menu-open' : ''} ${menuState === 'closing' ? 'is-menu-closing' : ''}`}
+        className={`site-header__logo ${isOverLightSection ? 'is-over-light' : ''} ${hasStartedScroll ? 'is-scrolled' : ''} ${isMenuOpen ? 'is-menu-open' : ''} ${menuState === 'closing' ? 'is-menu-closing' : ''}`}
         onClick={closeMenu}
       >
         <img
           className="site-header__logo-image"
-          src={isOverLightSection ? '/logo-preto.svg' : '/logo-branco.svg'}
+          src={logoSrc}
           alt="Helena Augusta"
         />
       </Link>

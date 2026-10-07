@@ -32,9 +32,13 @@
   animation: project-card-image-in 560ms ease-out forwards;
 }
 
+.project-card__media button {
+  font: inherit;
+}
+
 .project-card--cases {
   border: 0;
-  border-radius: 16px;
+  border-radius: 0;
   background: transparent;
   padding: 0;
 }
@@ -43,36 +47,38 @@
   position: relative;
   margin: 0;
   aspect-ratio: 3 / 4;
-  border-radius: 16px;
+  border-radius: 0;
   animation: none;
 }
 
 .project-card__overlay {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 2;
-  max-width: min(84%, 32ch);
-  background: rgba(0, 0, 0, 0.86);
-  color: #ffffff;
-  padding: 12px 14px;
-  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(16, 15, 9, 0) 10%, rgba(16, 15, 9, 0.86) 100%);
+  color: var(--color-off-white);
+  padding: 28px 18px 16px;
   display: grid;
-  gap: 7px;
+  gap: 6px;
 }
 
-.project-card--cases h3 {
+.project-card--cases .project-card__overlay h3 {
   margin: 0;
-  color: #ffffff;
-  font-size: clamp(1rem, 1.25vw, 1.2rem);
-  line-height: 1.2;
+  color: var(--color-off-white);
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 3.15vw, 3.1rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
 }
 
-.project-card--cases p {
+.project-card--cases .project-card__overlay p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: clamp(0.84rem, 1vw, 0.98rem);
-  line-height: 1.45;
+  color: rgba(241, 234, 225, 0.9);
+  font-size: clamp(0.92rem, 1.08vw, 1.08rem);
+  line-height: 1.5;
 }
 
 .project-card h3 {
@@ -138,9 +144,6 @@
 
 @media (max-width: 900px) {
   .project-card__overlay {
-    top: 12px;
-    left: 12px;
-    max-width: calc(100% - 24px);
-    padding: 10px 12px;
+    padding: 24px 14px 14px;
   }
 }

@@ -1,10 +1,16 @@
+export type ProjectSegment = 'Artes e Cultura' | 'Beleza e Saúde' | 'Design' | 'Moda e Lifestyle';
+export type ProjectService = 'Marcas' | 'Eventos' | 'Produto' | 'Mídia';
+
 export type Project = {
   id: number;
+  slug: string;
   title: string;
   description: string;
   image: string;
-  link: string;
-  technologies: string[];
-  segment: 'Artes e Cultura' | 'Beleza e Saúde' | 'Design' | 'Moda e Lifestyle';
-  service: 'Marcas' | 'Eventos' | 'Produto' | 'Mídia';
+  images: string[];
+  segment: ProjectSegment;
+  service: ProjectService;
+  featuredOnHome?: boolean;
+  link?: string;
+  technologies?: string[];
 };
