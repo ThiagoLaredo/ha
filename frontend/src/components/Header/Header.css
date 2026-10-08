@@ -1,7 +1,7 @@
 .site-header__logo {
   position: fixed;
   top: 18px;
-  left: 24px;
+  left: var(--site-gutter);
   z-index: 9999;
   text-decoration: none;
   padding: 8px 10px;
@@ -30,7 +30,7 @@
 .site-header__language-switch {
   position: fixed;
   top: 23px;
-  right: 78px;
+  right: calc(var(--site-gutter) + 54px);
   z-index: 9999;
   display: inline-flex;
   align-items: center;
@@ -121,7 +121,7 @@
 .site-header__menu-button {
   position: fixed;
   top: 18px;
-  right: 24px;
+  right: var(--site-gutter);
   z-index: 9999;
   width: 50px;
   height: 50px;
@@ -304,7 +304,7 @@
 @media (max-width: 768px) {
   .site-header__logo {
     top: 14px;
-    left: 18px;
+    left: var(--site-gutter);
     padding: 6px;
     transition: background-color 0.2s ease;
   }
@@ -320,12 +320,12 @@
 
   .site-header__menu-button {
     top: 14px;
-    right: 18px;
+    right: var(--site-gutter);
   }
 
   .site-header__language-switch {
     top: 14px;
-    right: 72px;
+    right: calc(var(--site-gutter) + 54px);
     gap: 4px;
     padding: 2px;
   }

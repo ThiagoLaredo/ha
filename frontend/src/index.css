@@ -58,6 +58,8 @@
   --shadow:
     rgba(16, 15, 9, 0.16) 0 12px 24px -12px, rgba(16, 15, 9, 0.08) 0 6px 10px -8px;
 
+  --site-gutter: 30px;
+
   --sans: var(--font-sans);
   --heading: var(--font-display);
   --mono: 'Courier New Regular', 'Courier New', Courier, monospace;
@@ -74,6 +76,8 @@
 
   @media (max-width: 1024px) {
     font-size: 16px;
+
+    --site-gutter: 18px;
   }
 }
 

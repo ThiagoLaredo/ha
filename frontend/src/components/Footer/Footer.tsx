@@ -4,7 +4,6 @@ import './Footer.css';
 
 const footerContent = {
   pt: {
-    eyebrow: 'CONTATO',
     title: 'VAMOS FAZER\nALGO\nRELEVANTE.',
     location: 'Sao Paulo · Brazil',
     contactLabel: 'Contato',
@@ -16,7 +15,6 @@ const footerContent = {
     openInstagramAria: 'Abrir Instagram',
   },
   en: {
-    eyebrow: 'CONTACT',
     title: "LET'S MAKE\nSOMETHING\nRELEVANT.",
     location: 'Sao Paulo · Brazil',
     contactLabel: 'Contact',
@@ -60,7 +58,6 @@ const Footer = () => {
       aria-label={text.footerAriaLabel}
     >
       <div className="site-footer__container">
-        <p className="site-footer__eyebrow">{text.eyebrow}</p>
         <h2 id="site-footer-title" className="site-footer__title">
           {text.title.split('\n').map((line) => (
             <span key={line}>
@@ -70,20 +67,20 @@ const Footer = () => {
           ))}
         </h2>
 
-        <a href="mailto:hello@helenaaugusta.com" className="site-footer__email">
-          hello@helenaaugusta.com
+        <a href="mailto:contato@helenaaugusta.com" className="site-footer__email">
+          contato@helenaaugusta.com
         </a>
 
         <p className="site-footer__location">{text.location}</p>
 
         <div className="site-footer__links" aria-label={text.linksAriaLabel}>
-          <Link className="site-footer__text-link" to="/contact">
+          <Link className="site-footer__text-link" to={language === 'pt' ? '/contato' : '/contact'}>
             {text.contactLabel}
           </Link>
 
           <a
             className="site-footer__text-link"
-            href="https://www.linkedin.com"
+            href="https://br.linkedin.com/company/helenaaugustacomunicacao"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={text.openLinkedinAria}

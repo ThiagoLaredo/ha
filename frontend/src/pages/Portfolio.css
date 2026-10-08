@@ -1,5 +1,5 @@
 .portfolio-page {
-  padding: 132px 64px 86px;
+  padding: 132px var(--site-gutter) 86px;
   background: var(--color-off-white);
   color: var(--color-black);
 }
@@ -91,7 +91,7 @@
 
 @media (max-width: 900px) {
   .portfolio-page {
-    padding: 112px 24px 56px;
+    padding: 112px var(--site-gutter) 56px;
   }
 
   .portfolio-filters {

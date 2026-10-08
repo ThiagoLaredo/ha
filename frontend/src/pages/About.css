@@ -18,7 +18,7 @@
 }
 
 .about-page__content {
-  padding: clamp(var(--spacing-2xl), 10vw, var(--spacing-3xl)) 64px;
+  padding: clamp(var(--spacing-2xl), 10vw, var(--spacing-3xl)) var(--site-gutter);
 }
 
 .about-page__container {
@@ -79,7 +79,7 @@
 
 @media (max-width: 1024px) {
   .about-page__content {
-    padding-inline: 32px;
+    padding-inline: var(--site-gutter);
   }
 
   .about-page__container {
@@ -97,6 +97,6 @@
   }
 
   .about-page__content {
-    padding: clamp(var(--spacing-xl), 12vw, var(--spacing-2xl)) 20px;
+    padding: clamp(var(--spacing-xl), 12vw, var(--spacing-2xl)) var(--site-gutter);
   }
 }

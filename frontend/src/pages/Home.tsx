@@ -34,26 +34,126 @@ const carouselImages = [
 ];
 
 const clientsData = [
-  { name: 'ADCOS', tag: 'Beauty · Science · Innovation', fileName: 'adcos-still-072.jpg' },
-  { name: 'Anny Meisler', tag: 'Design · Fashion · Editorial', fileName: 'anny-meisler-2-bruno-ryfer.jpg' },
-  { name: 'Blumi', tag: 'Care · Wellness · Lifestyle', fileName: 'blumi.jpg' },
-  { name: 'Buba', tag: 'Family · Lifestyle · Joy', fileName: 'buba.png' },
-  { name: 'Calma', tag: 'Wellness · Beauty · Ritual', fileName: 'calma-linha.jpeg' },
-  { name: 'Camila Fremder', tag: 'Culture · Talent · Media', fileName: 'camila-fremder-shoot54513.jpg' },
-  { name: 'Carolina Ferraz', tag: 'Culture · Publishing · Influence', fileName: 'carolina-ferraz.jpg' },
-  { name: 'Cris Dios Organics', tag: 'Beauty · Organic · Wellness', fileName: 'cris-dios-organics-alta-2421-2.jpg' },
-  { name: 'Elbo', tag: 'Fashion · Design · Style', fileName: 'elbo-agosto-4.jpg' },
-  { name: 'Feel', tag: 'Wellness · Intimacy · Care', fileName: 'feel-creme-vulvar-2.jpg' },
-  { name: 'Givaudan', tag: 'Fragrance · Innovation · Culture', fileName: 'givaudan-mayaha.jpg' },
-  { name: 'Glamour', tag: 'Media · Beauty · Trends', fileName: 'glamour-1.jpg' },
-  { name: 'Laces', tag: 'Beauty · Wellness · Sustainability', fileName: 'laces.jpeg' },
-  { name: 'LCS', tag: 'Culture · Strategy · Brand', fileName: 'lcs.jpg' },
-  { name: 'Lenvie', tag: 'Luxury · Fragrance · Lifestyle', fileName: 'lenvie.jpg' },
-  { name: 'Lourie', tag: 'Lifestyle · Fashion · Design', fileName: 'lourie.jpg' },
-  { name: 'Luz da Lua', tag: 'Fashion · Craft · Brazil', fileName: 'luz-da-lua.png' },
-  { name: 'Mart', tag: 'Fashion · Design · Attitude', fileName: 'mart.jpg' },
-  { name: 'Paula Martins', tag: 'Design · Interiors · Culture', fileName: 'paula-martins-1.jpg' },
-  { name: 'Urban Arts', tag: 'Art · City · Lifestyle', fileName: 'urban-arts.jpg' },
+  {
+    name: 'ADCOS',
+    tag: 'Beauty · Science · Innovation',
+    tagPt: 'Beleza · Ciência · Inovação',
+    fileName: 'adcos-still-072.jpg',
+  },
+  {
+    name: 'Anny Meisler',
+    tag: 'Design · Fashion · Editorial',
+    tagPt: 'Design · Moda · Editorial',
+    fileName: 'anny-meisler-2-bruno-ryfer.jpg',
+  },
+  {
+    name: 'Blumi',
+    tag: 'Care · Wellness · Lifestyle',
+    tagPt: 'Cuidado · Bem-estar · Estilo de vida',
+    fileName: 'blumi.jpg',
+  },
+  {
+    name: 'Buba',
+    tag: 'Family · Lifestyle · Joy',
+    tagPt: 'Família · Estilo de vida · Alegria',
+    fileName: 'buba.png',
+  },
+  {
+    name: 'Calma',
+    tag: 'Wellness · Beauty · Ritual',
+    tagPt: 'Bem-estar · Beleza · Ritual',
+    fileName: 'calma-linha.jpeg',
+  },
+  {
+    name: 'Camila Fremder',
+    tag: 'Culture · Talent · Media',
+    tagPt: 'Cultura · Talento · Mídia',
+    fileName: 'camila-fremder-shoot54513.jpg',
+  },
+  {
+    name: 'Carolina Ferraz',
+    tag: 'Culture · Publishing · Influence',
+    tagPt: 'Cultura · Publicação · Influência',
+    fileName: 'carolina-ferraz.jpg',
+  },
+  {
+    name: 'Cris Dios Organics',
+    tag: 'Beauty · Organic · Wellness',
+    tagPt: 'Beleza · Orgânico · Bem-estar',
+    fileName: 'cris-dios-organics-alta-2421-2.jpg',
+  },
+  {
+    name: 'Elbo',
+    tag: 'Fashion · Design · Style',
+    tagPt: 'Moda · Design · Estilo',
+    fileName: 'elbo-agosto-4.jpg',
+  },
+  {
+    name: 'Feel',
+    tag: 'Wellness · Intimacy · Care',
+    tagPt: 'Bem-estar · Intimidade · Cuidado',
+    fileName: 'feel-creme-vulvar-2.jpg',
+  },
+  {
+    name: 'Givaudan',
+    tag: 'Fragrance · Innovation · Culture',
+    tagPt: 'Perfumaria · Inovação · Cultura',
+    fileName: 'givaudan-mayaha.jpg',
+  },
+  {
+    name: 'Glamour',
+    tag: 'Media · Beauty · Trends',
+    tagPt: 'Mídia · Beleza · Tendências',
+    fileName: 'glamour-1.jpg',
+  },
+  {
+    name: 'Laces',
+    tag: 'Beauty · Wellness · Sustainability',
+    tagPt: 'Beleza · Bem-estar · Sustentabilidade',
+    fileName: 'laces.jpeg',
+  },
+  {
+    name: 'LCS',
+    tag: 'Culture · Strategy · Brand',
+    tagPt: 'Cultura · Estratégia · Marca',
+    fileName: 'lcs.jpg',
+  },
+  {
+    name: 'Lenvie',
+    tag: 'Luxury · Fragrance · Lifestyle',
+    tagPt: 'Luxo · Perfumaria · Estilo de vida',
+    fileName: 'lenvie.jpg',
+  },
+  {
+    name: 'Lourie',
+    tag: 'Lifestyle · Fashion · Design',
+    tagPt: 'Estilo de vida · Moda · Design',
+    fileName: 'lourie.jpg',
+  },
+  {
+    name: 'Luz da Lua',
+    tag: 'Fashion · Craft · Brazil',
+    tagPt: 'Moda · Feito à mão · Brasil',
+    fileName: 'luz-da-lua.png',
+  },
+  {
+    name: 'Mart',
+    tag: 'Fashion · Design · Attitude',
+    tagPt: 'Moda · Design · Atitude',
+    fileName: 'mart.jpg',
+  },
+  {
+    name: 'Paula Martins',
+    tag: 'Design · Interiors · Culture',
+    tagPt: 'Design · Interiores · Cultura',
+    fileName: 'paula-martins-1.jpg',
+  },
+  {
+    name: 'Urban Arts',
+    tag: 'Art · City · Lifestyle',
+    tagPt: 'Arte · Cidade · Estilo de vida',
+    fileName: 'urban-arts.jpg',
+  },
 ] as const;
 
 const content = {
@@ -120,7 +220,7 @@ const content = {
     clientsShowAll: 'VER TODOS',
     clientsShowLess: 'VER MENOS',
     selectedWorkLabel: 'CASES',
-    selectedWorkTitle: 'CASE EM\nDESTAQUE.',
+    selectedWorkTitle: 'CASES EM\nDESTAQUE.',
     selectedWorkCta: 'VER TODOS OS CASES ->',
     selectedWorkEmpty: 'Atualize o manifest para visualizar o case destaque aqui.',
     augustaTitle: 'THE AUGUSTA EDIT',
@@ -159,8 +259,6 @@ const content = {
     networkTitle: 'PESSOAS FAZEM\nCULTURA.',
     networkParagraph: 'Nossa força está nas relações que construímos através de uma ponte única.',
     networkNodes: ['MÍDIA', 'CRIADORES', 'TALENTOS', 'MARCAS', 'AGENTES CULTURAIS', 'NEGÓCIOS'],
-    contactTitle: 'VAMOS FAZER\nALGO\nRELEVANTE.',
-    contactLocation: 'São Paulo · Brazil',
   },
   en: {
     heroTitle: 'COMMUNICATION\nAS AN ASSET.',
@@ -225,7 +323,7 @@ const content = {
     clientsShowAll: 'VIEW ALL',
     clientsShowLess: 'VIEW LESS',
     selectedWorkLabel: 'CASES',
-    selectedWorkTitle: 'FEATURED\nCASE.',
+    selectedWorkTitle: 'FEATURED\nCASES.',
     selectedWorkCta: 'VIEW ALL CASES ->',
     selectedWorkEmpty: 'Update the manifest to display the featured case.',
     augustaTitle: 'THE AUGUSTA EDIT',
@@ -264,8 +362,6 @@ const content = {
     networkTitle: 'PEOPLE MAKE\nCULTURE.',
     networkParagraph: 'Our strength is in the relationships we build through a unique bridge.',
     networkNodes: ['MEDIA', 'CREATORS', 'TALENTS', 'BRANDS', 'CULTURAL PLAYERS', 'BUSINESS'],
-    contactTitle: "LET'S MAKE\nSOMETHING\nRELEVANT.",
-    contactLocation: 'São Paulo · Brazil',
   },
 } as const;
 
@@ -332,10 +428,10 @@ const Home = () => {
     () =>
       clientsData.map((client) => ({
         name: client.name,
-        tag: client.tag,
+        tag: language === 'pt' ? client.tagPt : client.tag,
         src: `/images/home/clientes/${encodeURIComponent(client.fileName)}`,
       })),
-    []
+    [language]
   );
   const visibleClients = showAllClients ? clients : clients.slice(0, 6);
   const selectedProjects = useMemo(() => {

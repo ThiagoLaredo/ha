@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const MENU_ANIMATION_MS = 550;
@@ -8,18 +8,18 @@ type MenuState = 'closed' | 'opening' | 'open' | 'closing';
 
 const menuLinks = {
   pt: [
-    { label: 'Quem somos', to: '/about', ariaLabel: 'Ir para página Quem somos' },
+    { label: 'Quem somos', to: '/quem-somos', ariaLabel: 'Ir para página Quem somos' },
     { label: 'O que fazemos', to: '/#o-que-fazemos', ariaLabel: 'Ir para seção O que fazemos' },
     { label: 'Cases', to: '/cases', ariaLabel: 'Ir para página Cases' },
     { label: 'Clientes', to: '/#clients', ariaLabel: 'Ir para seção Clientes' },
-    { label: 'Contato', to: '/#contact', ariaLabel: 'Ir para seção Contato' },
+    { label: 'Contato', to: '/contato', ariaLabel: 'Ir para página Contato' },
   ],
   en: [
-    { label: 'Who', to: '/about', ariaLabel: 'Go to Who page' },
+    { label: 'Who', to: '/who', ariaLabel: 'Go to Who page' },
     { label: 'What we do', to: '/#o-que-fazemos', ariaLabel: 'Go to What we do section' },
     { label: 'Cases', to: '/cases', ariaLabel: 'Go to Cases page' },
     { label: 'Clients', to: '/#clients', ariaLabel: 'Go to Clients section' },
-    { label: 'Contact', to: '/#contact', ariaLabel: 'Go to Contact section' },
+    { label: 'Contact', to: '/contact', ariaLabel: 'Go to Contact page' },
   ],
 } as const;
 
@@ -44,6 +44,7 @@ const uiLabels = {
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [menuState, setMenuState] = useState<MenuState>('closed');
   const [isOverLightSection, setIsOverLightSection] = useState<boolean>(location.pathname !== '/');
   const [hasStartedScroll, setHasStartedScroll] = useState<boolean>(false);
@@ -101,6 +102,28 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    const localizedPathMap = {
+      pt: {
+        '/about': '/quem-somos',
+        '/who': '/quem-somos',
+        '/contact': '/contato',
+      },
+      en: {
+        '/quem-somos': '/who',
+        '/sobre': '/who',
+        '/contato': '/contact',
+      },
+    } as const;
+
+    const currentPathMap = localizedPathMap[language];
+    const targetPath = currentPathMap[location.pathname as keyof typeof currentPathMap];
+
+    if (targetPath && targetPath !== location.pathname) {
+      navigate(`${targetPath}${location.search}${location.hash}`, { replace: true });
+    }
+  }, [language, location.hash, location.pathname, location.search, navigate]);
+
+  useEffect(() => {
     let ticking = false;
     let rafHandle: number;
 
@@ -108,7 +131,18 @@ const Header = () => {
       setHasStartedScroll(window.scrollY > 0);
 
       if (location.pathname !== '/') {
-        setIsOverLightSection(true);
+        const footerSection = document.querySelector<HTMLElement>('.site-footer');
+
+        if (!footerSection) {
+          setIsOverLightSection(true);
+          return;
+        }
+
+        const footerTrigger = 80;
+        const footerRect = footerSection.getBoundingClientRect();
+        const shouldUseWhiteHeader = footerRect.top <= footerTrigger && footerRect.bottom >= footerTrigger;
+
+        setIsOverLightSection(!shouldUseWhiteHeader);
         return;
       }
 
@@ -196,7 +230,7 @@ const Header = () => {
   };
 
   const reducedLogoSrc = isOverLightSection ? '/logo-preto.svg' : '/logo-branco.svg';
-  const initialLogoSrc = ['/about', '/contact', '/cases', '/portfolio'].includes(location.pathname)
+  const initialLogoSrc = ['/about', '/sobre', '/quem-somos', '/who', '/contact', '/contato', '/cases', '/portfolio'].includes(location.pathname)
     ? '/logo-extendido-escuro.svg'
     : '/logo-extendido-branco.svg';
   const logoSrc = hasStartedScroll ? reducedLogoSrc : initialLogoSrc;

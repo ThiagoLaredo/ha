@@ -1,7 +1,6 @@
 .contact-page {
-  background: #ffffff;
   min-height: 100vh;
-  padding: 120px 24px 92px;
+  padding: 120px var(--site-gutter) 92px;
   box-sizing: border-box;
 }
 
@@ -79,7 +78,7 @@
   border: 1px solid #05070a;
   border-radius: 999px;
   padding: 10px 18px;
-  background: #ffffff;
+  background: transparent;
   color: #05070a;
   font-family: var(--heading);
   font-size: 1rem;
@@ -100,7 +99,7 @@
 
 @media (max-width: 768px) {
   .contact-page {
-    padding: 96px 18px 72px;
+    padding: 96px var(--site-gutter) 72px;
   }
 
   .contact-page__shell {

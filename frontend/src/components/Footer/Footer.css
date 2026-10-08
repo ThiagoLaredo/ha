@@ -1,7 +1,7 @@
 .site-footer {
   background: var(--color-olive);
   color: var(--color-off-white);
-  padding: clamp(var(--spacing-2xl), 10vw, var(--spacing-3xl)) 64px;
+  padding: clamp(var(--spacing-2xl), 10vw, var(--spacing-3xl)) var(--site-gutter);
 }
 
 .site-footer__container {
@@ -93,8 +93,8 @@
 
 @media (max-width: 1024px) {
   .site-footer {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: var(--site-gutter);
+    padding-right: var(--site-gutter);
   }
 }
 
